@@ -9,7 +9,7 @@ time	heart rate	accelerometer1x	accelerometer1y	accelerometer1z	accelerometer1z	
 
 """
 
-def heart_rate_graphing(heart_rate):
+def heart_rate_graphing(heart_rate, filename):
 
     # plots the all time heart rate data over time
     plt.plot(heart_rate["time"], heart_rate["heart rate"])
@@ -68,7 +68,7 @@ def heart_rate_graphing(heart_rate):
     
     plt.savefig("ranges_heart_rate.png")
     
-    heart_rate.to_csv("heart_rate.csv")
+    heart_rate.to_csv("heart.csv")
 
 
 def accelerometer_graphing(accelerometer, num):
@@ -80,7 +80,7 @@ def accelerometer_graphing(accelerometer, num):
     #prints 3 line graphs of the data to separate x, y, and z out
     plt.subplot(3, 1, 1)
     plt.plot(accelerometer["time"], accelerometer[x], '.-')
-    plt.title('Accelerometer 1')
+    plt.title('Accelerometer', num)
     plt.ylabel('X acceleration')
 
     plt.subplot(3, 1, 2)
@@ -113,8 +113,10 @@ def force_graph(force_gauge):
 
 
 # imports the heart rate data as a pandas data frame
-data = pd.read_csv("Constant_Sample_data.csv", parse_dates = ["time"])
+filename = "Constant_Sample_data.csv"
+data = pd.read_csv(filename, parse_dates = ["time"])
 
-heart_rate_graphing(data)
+
+heart_rate_graphing(data, filename)
 # accelerometer_graphing(data, 1)
 # force_graph(data)
