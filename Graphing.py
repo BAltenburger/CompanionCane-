@@ -1,13 +1,44 @@
 import email #name will depend on what the .py file for email is called
 import pandas as pd
 from matplotlib import pyplot as plt
-from datetime import datetime, timedelta
+import datetime
 from collections import Counter
 
 """
 time	heart rate	accelerometer1x	accelerometer1y	accelerometer1z	accelerometer1z	accelrometer2x	accelerometer2y	accelerometer2z	strain gauge
 
 """
+
+def plot_today(heart_rate):
+    # plots the data for today
+    now = datetime.date.today()
+    end_of_day = now - datetime.timedelta(hours=24)
+    now = now.strftime("%d/%m/%Y %H:%M:%S")
+    end_of_day = end_of_day.strftime("%d/%m/%Y %H:%M:%S")
+
+
+    heart_rate = heart_rate[(heart_rate['time'] > end_of_day) & (heart_rate['time'] < now)]
+    plt.plot(heart_rate["time"], heart_rate["heart rate"])
+    plt.xlabel("Time")
+    plt.ylabel("Heart Rate")
+    plt.title("Heart Rate Data over Time")
+    plt.savefig("daily_time_heart_rate.png")
+
+
+def plot_week(heart_rate):
+    # plots the data for the week
+    now = datetime.date.today()
+    end_of_week = now - datetime.timedelta(hours=168)
+    now = now.strftime("%d/%m/%Y %H:%M:%S")
+    end_of_week = end_of_week.strftime("%d/%m/%Y %H:%M:%S")
+    
+    heart_rate = heart_rate[(heart_rate['time'] > end_of_week) & (heart_rate['time'] < now)]
+    plt.plot(heart_rate["time"], heart_rate["heart rate"])
+    plt.xlabel("Time")
+    plt.ylabel("Heart Rate")
+    plt.title("Heart Rate Data over Time")
+    plt.savefig("weekly_heart_rate.png")
+    
 
 def heart_rate_graphing(heart_rate, filename):
 
@@ -18,32 +49,9 @@ def heart_rate_graphing(heart_rate, filename):
     plt.title("Heart Rate Data over Time")
     plt.savefig("all_time_heart_rate.png")
 
-    
-    # plots the data for today
-    now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    start_of_day = datetime.today().strftime("%d/%m/%Y %H:%M:%S")
-
-    heart_rate = heart_rate.loc[(heart_rate["time"] > start_of_day) & (heart_rate["time"] < now)]
-    plt.plot(heart_rate["time"], heart_rate["heart rate"])
-    plt.xlabel("Time")
-    plt.ylabel("Heart Rate")
-    plt.title("Heart Rate Data over Time")
-    plt.savefig("daily_time_heart_rate.png")
-
-    """
-    # plots the data for the week
-    day = datetime.today
-    dt = datetime.strptime(day, '%d/%b/%Y')
-    start_of_week = dt - timedelta(days=dt.weekday())
-    end_of_week = start_of_week + timedelta(days=6)
-    
-    heart_rate = heart_rate.loc[(heart_rate.index >= start_of_week) & (heart_rate.index < end_of_week)]
-    plt.plot(heart_rate["time"], heart_rate["heart rate"])
-    plt.xlabel("Time")
-    plt.ylabel("Heart Rate")
-    plt.title("Heart Rate Data over Time")
-    plt.savefig("weekly_heart_rate.png")
-    """    
+    plot_today(heart_rate)
+    plot_week(heart_rate)
+       
 
     #checks to see if there are irregularities
     age = 19                 # open(“user_age.txt”, ‘r’).read()
@@ -58,9 +66,11 @@ def heart_rate_graphing(heart_rate, filename):
             else:
                     level.append("Normal")
 
-    heart_rate = heart_rate.append(pd.DataFrame(level, columns=["level"]), ignore_index=True)
-    print(heart_rate)
+    heart_rate['Level'] = level
 
+    heart_rate.to_csv(filename)
+
+    
     letter_counts = Counter(level)
     heart_rate = pd.DataFrame.from_dict(letter_counts, orient='index')
     heart_rate.plot(kind='bar')
@@ -68,8 +78,7 @@ def heart_rate_graphing(heart_rate, filename):
     
     plt.savefig("ranges_heart_rate.png")
     
-    heart_rate.to_csv("heart.csv")
-
+    
 
 def accelerometer_graphing(accelerometer, num):
 
@@ -80,7 +89,7 @@ def accelerometer_graphing(accelerometer, num):
     #prints 3 line graphs of the data to separate x, y, and z out
     plt.subplot(3, 1, 1)
     plt.plot(accelerometer["time"], accelerometer[x], '.-')
-    plt.title('Accelerometer', num)
+    plt.title('Accelerometer 1')
     plt.ylabel('X acceleration')
 
     plt.subplot(3, 1, 2)
@@ -116,7 +125,6 @@ def force_graph(force_gauge):
 filename = "Constant_Sample_data.csv"
 data = pd.read_csv(filename, parse_dates = ["time"])
 
-
 heart_rate_graphing(data, filename)
-# accelerometer_graphing(data, 1)
-# force_graph(data)
+force_graph(data)
+accelerometer_graphing(data, 1)
