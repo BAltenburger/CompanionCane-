@@ -5,7 +5,7 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_ADXL345_U.h>
 #include "HX711.h"
-#define calibration_factor //will do later
+#define calibration_factor -7150.0
 #define DOUT 3
 #define CLK 2
 #if !defined(CONFIG_BT_ENABLED) || ! defined(CONFIG_BLUEDROID_ENABLED)
