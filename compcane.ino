@@ -37,6 +37,7 @@ void setup(){
   //a2.setRange(ADXL345_RANGE_4_G); //commented out for now since aryan will figure out how to differentiate data from the 2 accelerometers
   lc.begin(DOUT, CLK);  //starts the load cell
   lc.set_scale(calibration_factor);  //calibrates the load cell based on the calibration factor. I have not calibrated it and am just using a default value that i found online
+  lc.tare(); //tares the scale based on the calibration factor
   sm = millis();  //this sets the start time of the code and is later updated to keep track of every interval of 200ms
 }
 void loop(){
