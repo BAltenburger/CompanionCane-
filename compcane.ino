@@ -66,14 +66,14 @@ void loop(){
       SerialBT.print(event.acceleration.y);
       SerialBT.print(", ");
       SerialBT.print(event.acceleration.z);
-      a2.getEvent(&event);
+      //a2.getEvent(&event);
       SerialBT.print(", ");
-      SerialBT.print(event.acceleration.x);
-      SerialBT.print(", ");
-      SerialBT.print(event.acceleration.y);
-      SerialBT.print(", ");
-      SerialBT.print(event.acceleration.z);
-      SerialBT.print(", ");
+      //SerialBT.print(event.acceleration.x);
+      //SerialBT.print(", ");
+      //SerialBT.print(event.acceleration.y);
+      //SerialBT.print(", ");
+      //SerialBT.print(event.acceleration.z);
+      //SerialBT.print(", ");
       SerialBT.println(lc.get_units(), 1);
       sm = millis();
     }
