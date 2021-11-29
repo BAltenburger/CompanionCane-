@@ -12,7 +12,7 @@
 #error Bluetooth is not enabled! Please run 'make menuconfig' to and enable it
 #endif
 BluetoothSerial SerialBT;    //creates object for serial bluetooth connect
-Adafruit_ADXL345_Unified a1  //creates object for the accelerometer. right now
+Adafruit_ADXL345_Unified a1  //creates object for the accelerometer. right now planning on only 1 accelerometer
 HX711 lc;
 const int pin = 34;  //pin defaults to A0 but for wolfgang's circuit it is on the GPIO34
 const int th = 550;
