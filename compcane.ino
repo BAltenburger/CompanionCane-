@@ -6,7 +6,7 @@
 #include <Adafruit_ADXL345_U.h>
 #include "HX711.h"
 #define calibration_factor -7150.0
-#define DOUT 3
+#define DOUT 4
 #define CLK 2
 #if !defined(CONFIG_BT_ENABLED) || ! defined(CONFIG_BLUEDROID_ENABLED)
 #error Bluetooth is not enabled! Please run 'make menuconfig' to and enable it
