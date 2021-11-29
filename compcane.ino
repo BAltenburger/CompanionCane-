@@ -14,7 +14,7 @@
 BluetoothSerial SerialBT;    //creates object for serial bluetooth connect
 Adafruit_ADXL345_Unified a1  //creates object for the accelerometer. right now
 HX711 lc;
-const int pin = 34;  //pint defaults to A0 but for wolfgang's circuit it is on the GPIO34
+const int pin = 34;  //pin defaults to A0 but for wolfgang's circuit it is on the GPIO34
 const int th = 550;
 byte samplesUntilReport;
 const byte SAMPLES_PER_SERIAL_SAMPLE = 10;
