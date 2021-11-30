@@ -43,6 +43,7 @@ void setup(){
 void loop(){
   cm = millis();  //this keeps track of the time in each interval of the loop and is later used and compared with the start time variable "sm" to see if 200ms passed
   sensors_event_t event;  //this is used in tandem with the accelerometer to get the "event" data
+  a1.getEvent(&event);
   int bpm = pS.getBeatsPerMinute();  //this gets the bpm calculated from the esp32 and pulse sensor data
   if(Serial.available()){    //this section sets the serial connection up for both the bluetooth and wired connection if there is a wired connection.
     SerialBT.write(Serial.read());
@@ -59,7 +60,6 @@ void loop(){
       }
     }
     if(cm - sm>= 200){  //checks to see if 200ms passed and prints all the values to the bluetooth serial that is then read by the python code
-      a1.getEvent(&event);
       SerialBT.print(bpm);
       SerialBT.print(", ");
       SerialBT.print(event.acceleration.x);
