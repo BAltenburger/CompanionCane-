@@ -6,7 +6,7 @@ filename = "analog-data.csv"
 open(filename, "w").write("")
 samples = 432000
 file = open(filename, "a")
-file.write("time, HR, accelerometer1x, accelerometer1y, accelerometer1z, accelerometer2x, accelerometer2y, accelerometer2z, strain guage\n")
+file.write("time, HR, accelerometer1x, accelerometer1y, accelerometer1z, strain guage, accelerometer2x, accelerometer2y, accelerometer2z\n")
 line = 0
     
 while line < samples:
