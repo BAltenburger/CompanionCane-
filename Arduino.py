@@ -12,7 +12,7 @@ line = 0
 while line < samples:
     getData = str(arduino.readline())
     now = str(datetime.now())
-    data = str(getData)[2:len(getData)]
+    data = str(getData)[2:len(getData)-5]
     print(data)
     file = open(filename, "a")
     file.write(now + ", " + data + "\n")
