@@ -76,7 +76,7 @@ void loop(){
       //SerialBT.print(event.acceleration.z);
       //SerialBT.print(", ");
       SerialBT.println(lc.get_units(), 1);
-      sm = millis();
+      sm = millis();  //updates the starting time to keep track of consecutive 200ms interval
     }
   }
 }
