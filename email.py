@@ -10,7 +10,7 @@ def emailtool(message, file):
     subject = "Health data"
     body = message
     sender_email = "eptprogramming2021@gmail.com"
-    receiver_email = open("physician_contact.txt", 'r').read() 
+    receiver_email = open("physician_email.txt", 'r').read() 
     password = "programmingEPT2021"
 
     message = MIMEMultipart()
