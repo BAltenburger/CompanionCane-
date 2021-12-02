@@ -1,10 +1,18 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import Message, MessagingResponse
-from clear_user_data import clear
 from os.path import exists
 
 app = Flask(__name__)
-
+def clear(user_number):
+    open(user_number + "service_order.txt", "w").write("")
+    open("user_age.txt", "w").write("")
+    open("user_number.txt", "w").write("")
+    open("user_gender.txt", "w").write("")
+    open("user_weight.txt", "w").write("")
+    open("emergency_contacts1.txt", "w").write("")
+    open("physician_contact.txt", "w").write("")
+    open("physician_email.txt", "w").write("")
+    open("user_preference.txt", "w").write("")
 
 @app.route('/sms', methods=['POST'])
 def sms():
