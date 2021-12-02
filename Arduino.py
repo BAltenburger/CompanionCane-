@@ -1,12 +1,14 @@
 import serial
 from datetime import datetime
+from os.path import exists
 
 arduino = serial.Serial('COM4', 115200) #check bluetooth setting/more bluetooth options/coms and change the com# to the output connection
-filename = "analog-data.csv"
-open(filename, "w").write("")
+filename = "data.csv"
+if not exists(filename):
+    open(filename, "w").write("")
+    file.write("time, HR, accelerometer1x, accelerometer1y, accelerometer1z, strain guage, accelerometer2x, accelerometer2y, accelerometer2z\n")
 samples = 432000
 file = open(filename, "a")
-file.write("time, HR, accelerometer1x, accelerometer1y, accelerometer1z, strain guage, accelerometer2x, accelerometer2y, accelerometer2z\n")
 line = 0
     
 while line < samples:
