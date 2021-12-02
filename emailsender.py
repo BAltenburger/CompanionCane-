@@ -36,7 +36,7 @@ def emaildaily():
 
 
 def emailweek():
-    file "weekly_heart_rate.png"
+    file = "weekly_heart_rate.png"
     subject = "Health data"
     body = "weekly heart rate"
     sender_email = "eptprogramming2021@gmail.com"
