@@ -12,17 +12,19 @@ def accelerometer_fall(csv, num):
     z = " accelerometer" + str(num) + "z"
     index = 0
         
-    for i in csv[x]:
-        if float(i) == float(csv[y][index]) == float(csv[z][index]):
+    for i in csv[z]:
+#        if float(i) == float(csv[y][index]) == float(csv[z][index]):
+#            return True
+#        index += 1
+        if i == 0 or i <= 1.5:
             return True
-        index += 1
 
     return False
 
 def is_force(csv1):
     i = -1
     while i < csv[" strain guage"].index:
-        if csv["strain guage"][i-1] != 0:
+        if csv[" strain guage"][i-1] != 0:
             return False
         i += 1
     return True
@@ -31,7 +33,7 @@ def is_heart_rate(csv1):
     time.sleep(30)
 
     for i in range(len(csv[" HR"]) - 150, len(csv[" HR"])):
-        if csv["HR"] != 0:
+        if csv[" HR"] != 0:
             return True
     return False
 
