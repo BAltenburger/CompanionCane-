@@ -4,17 +4,18 @@ import schedule
 import emailsender
 from sms import sms
 import time
-#import graphing
+import graphing
+import fall_detection
 from os.path import exists
 import threading
 
 def check():
     while True:
-        if hr_checker:
+        if fall_detection.hr_checker():
             sms("Dangerous Heart Rate detected, Attention needed")
             graphing()
             emailsender.emailtool("health data")
-        if fall_detection:
+        if fall_detection.fall_detection():
             sms("Fall detected, Attention needed")
             graphing()
             emailsender.emailtool("health data")
