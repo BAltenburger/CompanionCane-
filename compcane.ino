@@ -5,13 +5,13 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_ADXL345_U.h>
 #include "HX711.h"
-#define calibration_factor -7150.0
+#define calibration_factor -10000.0 //number we calibrated 12/6
 #define DOUT 4
 #define CLK 2 //not 100% sure if this is correct but the sck is connected to pin GPIO2. This is also associated with the blue led on the board and will cause it to flash continuously
 #if !defined(CONFIG_BT_ENABLED) || ! defined(CONFIG_BLUEDROID_ENABLED)
 #error Bluetooth is not enabled! Please run 'make menuconfig' to and enable it
 #endif
-BluetoothSerial SerialBT;    //creates object for serial bluetooth connect
+BluetoothSerial SerialBT;    //creates object for serial bluetooth connection
 Adafruit_ADXL345_Unified a1  //creates object for the accelerometer. right now planning on only 1 accelerometer
 HX711 lc;
 const int pin = 34;  //pin defaults to A0 but for wolfgang's circuit it is on the GPIO34
@@ -59,16 +59,16 @@ void loop(){
         pS.outputBeat();
       }
     }
-    if(cm - sm>= 200){  //checks to see if 200ms passed and prints all the values to the bluetooth serial that is then read by the python code
+    if(cm - sm>= 50){  //checks to see if 200ms passed and prints all the values to the bluetooth serial that is then read by the python code
       SerialBT.print(bpm);
-      SerialBT.print(", ");
+      SerialBT.print(",");
       SerialBT.print(event.acceleration.x);
-      SerialBT.print(", ");
+      SerialBT.print(",");
       SerialBT.print(event.acceleration.y);
-      SerialBT.print(", ");
+      SerialBT.print(",");
       SerialBT.print(event.acceleration.z);
       //a2.getEvent(&event);
-      SerialBT.print(", ");
+      SerialBT.print(",");
       //SerialBT.print(event.acceleration.x);
       //SerialBT.print(", ");
       //SerialBT.print(event.acceleration.y);
