@@ -67,7 +67,7 @@ def emailweek():
 
 
 def emailtool(message):
-    files = ["data.csv", "all_time_heart_rate.png", "ranges_heart_rate.png", 
+    files = ["data.csv", "all_time_heart_rate.png", "daily_time_heart_rate.png", "weekly_heart_rate.png", "ranges_heart_rate.png", 
              "three_line_plot_accelerometer.png", "three_dimension_plot_accelerometer.png", "force_plot.png"]
     subject = "Health data"
     body = message
