@@ -17,5 +17,5 @@ def sms(message):
                         from_='+15204127054',
                         to=str(open("physician_contact.txt", "r").read())
                         )
-    print(message.sid)
-    print(message2.sid)
+    message
+    message2
