@@ -1,14 +1,12 @@
 import pandas as pd
-import datetime
-from scipy.optimize import fsolve
+import time
 
-def check():        
-    stuff=pd.read_csv("test.csv", parse_dates = True)
-    length=len(stuff.index)
-    l=length-1
-    print(l)
-    if l>2:
-        while l>2 and l>length-30:
+def check():  
+    while thread1.is_alive():
+        stuff=pd.read_csv("test.csv",parse_dates = True)
+        length=len(stuff.index)
+        l=length-1
+        while l>3 and l>length-40:
             b2=stuff.iloc[l][" accelerometer1x"]
             b1=stuff.iloc[l-1][" accelerometer1x"]
             c2=stuff.iloc[l][" accelerometer1y"]
@@ -18,15 +16,19 @@ def check():
             bm=b1-b2
             cm=c1-c2
             dm=d1-d2
-            b=lambda x:bm*x+b1
-            c=lambda x:cm*x+c1
-            d=lambda x:dm*x+d1
-            r1=fsolve(lambda x:b(x)-c(x),0.0)
-            r2=fsolve(lambda x:c(x)-d(x),0.0)
-            # print(r1)
-            # print(r2)
+            if not bm-cm==0:
+                r1=(b1-c1)/(cm-bm)
+            else:
+                r1=0
+            if not cm-dm==0:
+                r2=(c1-d1)/(dm-cm)
+            else:
+                r2=0
             if r1<=1 and r2<=1:
                 if (r1>0 and r2>0) or (b1==c1 and b1==d1):
+                    print(l)
                     print("fall detected")
-                    return True
-            l-=2
+                    time.sleep(1.5)
+                    l-=40
+            l-=1
+        time.sleep(0.5)
