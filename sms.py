@@ -5,7 +5,7 @@ def sms(message):
     auth_token = '436c27e335f9febebe8860848e53a366'
     client = Client(account_sid, auth_token)
 
-    message = client.messages \
+    message1 = client.messages \
                     .create(
                         body=message,
                         from_='+15204127054',
@@ -17,5 +17,5 @@ def sms(message):
                         from_='+15204127054',
                         to=str(open("physician_contact.txt", "r").read())
                         )
-    message
+    message1
     message2
