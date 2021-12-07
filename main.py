@@ -85,7 +85,7 @@ def check():
         time.sleep(0.5)
         
 def cane():
-    arduino=serial.Serial('COM6',115200)
+    arduino=serial.Serial('COM6',115200) #'COM6' will vary so check your bluetooth settings. Also Macbook ports are notated differently than windows
     filename="data.csv"
     if not exists(filename):
         open(filename,"w").write("time, HR, accelerometer1x, accelerometer1y, accelerometer1z, strain guage, accelerometer2x, accelerometer2y, accelerometer2z\n")
