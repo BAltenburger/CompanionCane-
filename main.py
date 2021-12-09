@@ -148,8 +148,3 @@ thread1=threading.Thread(target=cane)
 thread2=threading.Thread(target=check)
 thread1.start()
 thread2.start()
-
-thread1=threading.Thread(target=cane)
-thread2=threading.Thread(target=check)
-thread1.start()
-thread2.start()
