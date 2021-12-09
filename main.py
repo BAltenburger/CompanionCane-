@@ -9,6 +9,8 @@ import graphing
 from os.path import exists
 import threading
 
+if not exists("data.csv"):
+    open("data.csv","w").write("time, HR, accelerometer1x, accelerometer1y, accelerometer1z, strain gauge, accelerometer2x, accelerometer2y, accelerometer2z\n")
 schedule.every().day.at("21:59").do(graphing.plot_today)
 schedule.every().day.at("22:00").do(emailsender.emaildaily)
 schedule.every().monday.do(graphing.plot_week)
