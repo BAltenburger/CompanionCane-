@@ -1,4 +1,3 @@
-import email #name will depend on what the .py file for email is called
 import pandas as pd
 from matplotlib import pyplot as plt
 import datetime
@@ -117,10 +116,10 @@ def accelerometer_graphing(accelerometer, num):
 
 def force_graph(force_gauge):
 
-    plt.plot(force_gauge["time"], force_gauge[" strain guage"], "-")
+    plt.plot(force_gauge["time"], force_gauge[" strain gauge"], "-")
     plt.xlabel("Time")
     plt.ylabel("Force")
-    plt.title("Force Guage Data over Time")
+    plt.title("Force Gauge Data over Time")
 
     plt.savefig("force_plot.png")
     plt.close()
