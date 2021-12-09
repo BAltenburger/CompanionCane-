@@ -11,10 +11,13 @@ import threading
 
 if not exists("data.csv"):
     open("data.csv","w").write("time, HR, accelerometer1x, accelerometer1y, accelerometer1z, strain gauge, accelerometer2x, accelerometer2y, accelerometer2z\n")
-schedule.every().day.at("21:59").do(graphing.plot_today)
-schedule.every().day.at("22:00").do(emailsender.emaildaily)
-schedule.every().monday.do(graphing.plot_week)
-schedule.every().monday.do(emailsender.emailweek)
+def scheduling():
+    time.sleep(60)
+    schedule.every().day.at("21:59").do(graphing.plot_today)
+    schedule.every().day.at("22:00").do(emailsender.emaildaily)
+    schedule.every().monday.do(graphing.plot_week)
+    schedule.every().monday.do(emailsender.emailweek)
+    
 def check():  
     Cane_fall=False
     Cane_fall2=False
@@ -148,5 +151,7 @@ def cane():
 
 thread1=threading.Thread(target=cane)
 thread2=threading.Thread(target=check)
+thread3=threading.Thread(target=scheduling)
 thread1.start()
 thread2.start()
+thread3.start()
