@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 def emaildaily():
-    file = ["daily_time_heart_rate.png", "data.csv"]
+    file = "daily_time_heart_rate.png"
     subject = "health data"
     body = "daily heart rate"
     sender_email = "eptprogramming2021@gmail.com"
@@ -36,7 +36,7 @@ def emaildaily():
 
 
 def emailweek():
-    file = ["weekly_heart_rate.png", "data.csv"]
+    file = "weekly_heart_rate.png"
     subject = "Health data"
     body = "weekly heart rate"
     sender_email = "eptprogramming2021@gmail.com"
